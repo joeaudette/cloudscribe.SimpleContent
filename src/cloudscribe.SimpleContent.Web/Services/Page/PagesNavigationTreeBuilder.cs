@@ -7,9 +7,11 @@
 
 using cloudscribe.SimpleContent.Models;
 using cloudscribe.Web.Navigation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,14 +26,14 @@ namespace cloudscribe.SimpleContent.Services
             IUrlHelperFactory urlHelperFactory,
             IPageRoutes pageRoutes,
             IBlogRoutes blogRoutes,
-            IActionContextAccessor actionContextAccesor
+            IHttpContextAccessor httpContextAccessor
             )
         {
             _projectService = projectService;
             _pageService = pageService;
             _prefixProvider = prefixProvider;
             _urlHelperFactory = urlHelperFactory;
-            _actionContextAccesor = actionContextAccesor;
+            _httpContextAccessor = httpContextAccessor;
             _pageRoutes = pageRoutes;
             _blogRoutes = blogRoutes;
         }
@@ -42,7 +44,7 @@ namespace cloudscribe.SimpleContent.Services
         private IUrlHelperFactory _urlHelperFactory;
         private IPageRoutes _pageRoutes;
         private IBlogRoutes _blogRoutes;
-        private IActionContextAccessor _actionContextAccesor;
+        private IHttpContextAccessor _httpContextAccessor;
         private TreeNode<NavigationNode> _rootNode = null;
 
         public string Name
@@ -83,7 +85,12 @@ namespace cloudscribe.SimpleContent.Services
             var rootList = await _pageService.GetRootPages().ConfigureAwait(false);
             var rootListCount = rootList.Count();
 
-            var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccesor.ActionContext);
+            var actionContext = new ActionContext(
+                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext.GetRouteData(),
+                new Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor()
+            );
+            var urlHelper = _urlHelperFactory.GetUrlHelper(actionContext);
             //var folderPrefix = _prefixProvider.GetPrefix();
             if ((homePage != null) && project.UseDefaultPageAsRootNode)
             {

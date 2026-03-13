@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
 using System;
 using System.Threading.Tasks;
 
@@ -14,21 +15,18 @@ namespace cloudscribe.SimpleContent.Web.Services
         public BlogUrlResolver(
             IHttpContextAccessor contextAccessor,
             IUrlHelperFactory urlHelperFactory,
-            IActionContextAccessor actionContextAccesor,
             IContentProcessor contentProcessor,
             IBlogRoutes blogRoutes
             )
         {
             _contextAccessor = contextAccessor;
             _urlHelperFactory = urlHelperFactory;
-            _actionContextAccesor = actionContextAccesor;
             _contentProcessor = contentProcessor;
             _blogRoutes = blogRoutes;
         }
 
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly IUrlHelperFactory _urlHelperFactory;
-        private readonly IActionContextAccessor _actionContextAccesor;
         private readonly IContentProcessor _contentProcessor;
         private readonly IBlogRoutes _blogRoutes;
 
@@ -36,7 +34,12 @@ namespace cloudscribe.SimpleContent.Web.Services
         {
             //await EnsureBlogSettings().ConfigureAwait(false);
 
-            var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccesor.ActionContext);
+            var actionContext = new ActionContext(
+                _contextAccessor.HttpContext,
+                _contextAccessor.HttpContext.GetRouteData(),
+                new Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor()
+            );
+            var urlHelper = _urlHelperFactory.GetUrlHelper(actionContext);
             var result = urlHelper.RouteUrl(_blogRoutes.BlogIndexRouteName);
 
             return Task.FromResult(result);
@@ -45,7 +48,12 @@ namespace cloudscribe.SimpleContent.Web.Services
         public Task<string> ResolvePostUrl(IPost post, IProjectSettings projectSettings)
         {
             
-            var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccesor.ActionContext);
+            var actionContext = new ActionContext(
+                _contextAccessor.HttpContext,
+                _contextAccessor.HttpContext.GetRouteData(),
+                new Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor()
+            );
+            var urlHelper = _urlHelperFactory.GetUrlHelper(actionContext);
             string postUrl;
             if (projectSettings.IncludePubDateInPostUrls)
             {

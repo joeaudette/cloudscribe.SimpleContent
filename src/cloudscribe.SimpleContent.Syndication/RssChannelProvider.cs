@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,6 @@ namespace cloudscribe.SimpleContent.Syndication
             IBlogRoutes blogRoutes,
             IHttpContextAccessor contextAccessor,
             IUrlHelperFactory urlHelperFactory,
-            IActionContextAccessor actionContextAccesor,
             IContentProcessor contentProcessor,
             IStringLocalizer<RssChannelProvider> localizer
             )
@@ -40,14 +40,12 @@ namespace cloudscribe.SimpleContent.Syndication
             BlogUrlResolver = blogUrlResolver;
             ContextAccessor = contextAccessor;
             UrlHelperFactory = urlHelperFactory;
-            ActionContextAccesor = actionContextAccesor;
             ContentProcessor = contentProcessor;
             BlogRoutes = blogRoutes;
             sr = localizer;
         }
 
         protected IUrlHelperFactory UrlHelperFactory { get; private set; }
-        protected IActionContextAccessor ActionContextAccesor { get; private set; }
         protected IHttpContextAccessor ContextAccessor { get; private set; }
         protected IProjectService ProjectService { get; private set; }
         protected IBlogService BlogService { get; private set; }
@@ -102,7 +100,13 @@ namespace cloudscribe.SimpleContent.Syndication
                 }
             }
             
-            var urlHelper = UrlHelperFactory.GetUrlHelper(ActionContextAccesor.ActionContext);
+            // Get ActionContext from HttpContext for URL generation
+            var actionContext = new ActionContext(
+                ContextAccessor.HttpContext,
+                ContextAccessor.HttpContext.GetRouteData(),
+                new Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor()
+            );
+            var urlHelper = UrlHelperFactory.GetUrlHelper(actionContext);
 
             if (!string.IsNullOrEmpty(project.Image))
             {
