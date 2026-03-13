@@ -29,12 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E9B2D007-5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cloudscribe.SimpleContent.Web.Tests", "test\cloudscribe.SimpleContent.Web.Tests\cloudscribe.SimpleContent.Web.Tests.csproj", "{16735222-D50E-4535-A9BD-85EE05AA5308}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap4", "src\cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap4\cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap4.csproj", "{AD0BEF33-2C26-4ABB-BD71-9BF9E46A7DB4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cloudscribe.SimpleContent.CompiledViews.Bootstrap4", "src\cloudscribe.SimpleContent.CompiledViews.Bootstrap4\cloudscribe.SimpleContent.CompiledViews.Bootstrap4.csproj", "{20ECAB1E-CF0B-4901-893B-ADF3C99C2093}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cloudscribe.SimpleContent.ContentTemplates.Bootstrap4", "src\cloudscribe.SimpleContent.ContentTemplates.Bootstrap4\cloudscribe.SimpleContent.ContentTemplates.Bootstrap4.csproj", "{C5A157C3-8A3D-467D-8D5A-52EA1A9297C6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cloudscribe.SimpleContent.Storage.EFCore.PostgreSql", "src\cloudscribe.SimpleContent.Storage.EFCore.PostgreSql\cloudscribe.SimpleContent.Storage.EFCore.PostgreSql.csproj", "{76A12B64-BF45-464F-8B23-1AEBF9427E9B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cloudscribe.ContentUtils", "src\cloudscribe.ContentUtils\cloudscribe.ContentUtils.csproj", "{4D932067-B9E4-4130-A23E-B56EEA89E9AC}"
@@ -101,18 +95,6 @@ Global
 		{16735222-D50E-4535-A9BD-85EE05AA5308}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16735222-D50E-4535-A9BD-85EE05AA5308}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16735222-D50E-4535-A9BD-85EE05AA5308}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD0BEF33-2C26-4ABB-BD71-9BF9E46A7DB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD0BEF33-2C26-4ABB-BD71-9BF9E46A7DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD0BEF33-2C26-4ABB-BD71-9BF9E46A7DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD0BEF33-2C26-4ABB-BD71-9BF9E46A7DB4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20ECAB1E-CF0B-4901-893B-ADF3C99C2093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20ECAB1E-CF0B-4901-893B-ADF3C99C2093}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20ECAB1E-CF0B-4901-893B-ADF3C99C2093}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20ECAB1E-CF0B-4901-893B-ADF3C99C2093}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5A157C3-8A3D-467D-8D5A-52EA1A9297C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5A157C3-8A3D-467D-8D5A-52EA1A9297C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5A157C3-8A3D-467D-8D5A-52EA1A9297C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5A157C3-8A3D-467D-8D5A-52EA1A9297C6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76A12B64-BF45-464F-8B23-1AEBF9427E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76A12B64-BF45-464F-8B23-1AEBF9427E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76A12B64-BF45-464F-8B23-1AEBF9427E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -161,9 +143,6 @@ Global
 		{4713D574-918D-4129-A11C-2287AE4B119F} = {5243DE57-7C89-4208-8876-405E13605D16}
 		{CBB0F82E-371E-4F0C-8474-C1B7D30754A9} = {5243DE57-7C89-4208-8876-405E13605D16}
 		{16735222-D50E-4535-A9BD-85EE05AA5308} = {E9B2D007-5701-4DEB-AC64-A435D71AA05F}
-		{AD0BEF33-2C26-4ABB-BD71-9BF9E46A7DB4} = {5243DE57-7C89-4208-8876-405E13605D16}
-		{20ECAB1E-CF0B-4901-893B-ADF3C99C2093} = {5243DE57-7C89-4208-8876-405E13605D16}
-		{C5A157C3-8A3D-467D-8D5A-52EA1A9297C6} = {5243DE57-7C89-4208-8876-405E13605D16}
 		{76A12B64-BF45-464F-8B23-1AEBF9427E9B} = {5243DE57-7C89-4208-8876-405E13605D16}
 		{4D932067-B9E4-4130-A23E-B56EEA89E9AC} = {5243DE57-7C89-4208-8876-405E13605D16}
 		{9AA5C22E-496F-4E3B-8497-8B27F80BEF03} = {5243DE57-7C89-4208-8876-405E13605D16}
