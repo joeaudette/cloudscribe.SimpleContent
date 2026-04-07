@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>MySQL Entity Framework Core implementation of cloudscribe SimpleContent commands and queries</Description>
-    <Version>10.0.0</Version>
+    <Version>10.1.0</Version>
     <TargetFramework>net10.0</TargetFramework>
     <!-- Suppress intentional package downgrade warnings for MySQL compatibility -->
     <NoWarn>$(NoWarn);NU1605;NU1701</NoWarn>
